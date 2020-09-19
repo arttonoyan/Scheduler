@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Artnix.Scheduler/.vs/Artnix.Scheduler/v16
+/Artnix.Scheduler/Artnix.Scheduler/bin/Debug/netstandard2.0
+/Artnix.Scheduler/Artnix.Scheduler/obj
