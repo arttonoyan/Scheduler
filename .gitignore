@@ -7,3 +7,5 @@
 /Artnix.Scheduler/Artnix.Scheduler/bin/Debug/netstandard2.0
 /Artnix.Scheduler/Artnix.Scheduler/obj
 /Artnix.Scheduler/.vs/Artnix.Scheduler/DesignTimeBuild/.dtbcache.v2
+/Artnix.Scheduler/Artnix.Scheduler.ConsoleTestApp/obj
+/Artnix.Scheduler/Artnix.Scheduler.ConsoleTestApp/bin/Debug/netcoreapp3.1
