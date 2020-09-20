@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Artyom Tonoyan</Authors>
+    <Company>ArtNix LLC</Company>
+    <Copyright>@ 2020 ARTNIX LLC</Copyright>
+    <PackageProjectUrl>https://github.com/arttonoyan/Scheduler/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/arttonoyan/Scheduler/</RepositoryUrl>
+    <PackageTags>Schedule Job Task</PackageTags>
+    <Description>Automated job scheduler</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>Artnix.SchedulerFramework</PackageId>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseFile></PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>

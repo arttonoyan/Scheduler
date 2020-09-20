@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Artnix.Scheduler</RootNamespace>
+    <PackageId>Artnix.SchedulerFramework.DependencyInjection</PackageId>
+    <Authors>Artyom Tonoyan</Authors>
+    <Company>ArtNix LLC</Company>
+    <Description>Automated job scheduler</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Copyright>@ 2020 ARTNIX LLC</Copyright>
+    <PackageProjectUrl>https://github.com/arttonoyan/Scheduler/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/arttonoyan/Scheduler/</RepositoryUrl>
+    <PackageTags>Schedule Job Task DependencyInjection</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
