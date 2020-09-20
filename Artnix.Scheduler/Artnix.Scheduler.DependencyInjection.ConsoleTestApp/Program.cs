@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Artnix.Scheduler.DependencyInjection.ConsoleTestApp
 {
@@ -20,7 +18,6 @@ namespace Artnix.Scheduler.DependencyInjection.ConsoleTestApp
             var scheduler = provider.GetService<IScheduler>();
             scheduler.Start();
 
-            Console.WriteLine("Started");
             Console.ReadLine();
         }
     }
