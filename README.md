@@ -8,7 +8,7 @@
 [![Nuget](https://img.shields.io/nuget/v/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
 [![Nuget](https://img.shields.io/nuget/dt/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
 
-## At the first you must create your Job and implement the "Execute" function.
+## At the first you must create your Job and implement the `Execute` function.
 
 ```
 public class MyJobRed : IJob
@@ -21,7 +21,7 @@ public class MyJobRed : IJob
     }
 }
 ```
-## Or AsyncJob and implement the "ExecuteAsync" function.
+## Or AsyncJob and implement the `ExecuteAsync` function.
 ```
 public class MyAsyncJob : IAsyncJob
 {
