@@ -9,3 +9,9 @@
 /Artnix.Scheduler/.vs/Artnix.Scheduler/DesignTimeBuild/.dtbcache.v2
 /Artnix.Scheduler/Artnix.Scheduler.ConsoleTestApp/obj
 /Artnix.Scheduler/Artnix.Scheduler.ConsoleTestApp/bin/Debug/netcoreapp3.1
+/Artnix.Scheduler/Artnix.Scheduler/bin/Debug/netstandard2.1
+/Artnix.Scheduler/Artnix.Scheduler.DependencyInjection/bin/Debug
+/Artnix.Scheduler/Artnix.Scheduler.DependencyInjection/obj
+/Artnix.Scheduler/Artnix.Scheduler.DependencyInjection.ConsoleTestApp/obj
+/Artnix.Scheduler/Artnix.Scheduler.DependencyInjection.ConsoleTestApp/bin/Debug/netcoreapp3.1
+/Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj.user
