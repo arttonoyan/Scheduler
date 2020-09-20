@@ -8,10 +8,10 @@ namespace Artnix.Scheduler.DependencyInjection.ConsoleTestApp
         static void Main(string[] args)
         {
             var services = new ServiceCollection();
-            services.AddScheduler(cfg =>
+            services.AddScheduler(schedule =>
             {
-                cfg.CreaJobService<MyJobRed>(b => b.ToRunOnceIn(2).Seconds().AtStartTime());
-                cfg.CreaJobService<MyJobGreen>(b => b.ToRunOnceIn(3).Seconds().AtStartTime());
+                schedule.CreateJobService<MyJobRed>(cfg => cfg.ToRunOnceIn(2).Seconds().AtStartTime());
+                schedule.CreateJobService<MyJobGreen>(cfg => cfg.ToRunOnceIn(3).Seconds().AtStartTime());
             });
 
             var provider = services.BuildServiceProvider();

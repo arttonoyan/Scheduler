@@ -5,7 +5,7 @@ namespace Artnix.Scheduler.Builders
 {
     public interface IJobMapperBuilder
     {
-        IJobMapperBuilder CreaJobService<TJob>(Action<IJobStartBuilder> confifurator)
+        IJobMapperBuilder CreateJobService<TJob>(Action<IJobStartBuilder> confifurator)
             where TJob : class, IJob;
     }
 
@@ -18,7 +18,7 @@ namespace Artnix.Scheduler.Builders
             this.services = services;
         }
 
-        public IJobMapperBuilder CreaJobService<TJob>(Action<IJobStartBuilder> confifurator)
+        public IJobMapperBuilder CreateJobService<TJob>(Action<IJobStartBuilder> confifurator)
             where TJob : class, IJob
         {
             JobManager.AddJob<TJob>();
