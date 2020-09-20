@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Artnix.Scheduler.DependencyInjection
+namespace Artnix.Scheduler
 {
     public static class ServiceCollectionExtensions
     {
