@@ -6,7 +6,5 @@ namespace Artnix.Scheduler.Builders
     {
         IJobServiceBuilder At(DateTime dateTime);
         IJobServiceBuilder AtStartTime();
-        IJobServiceBuilder AtTheEndOfDay();
-        IJobServiceBuilder AtTomorrowStartOfDay();
     }
 }

@@ -84,11 +84,5 @@ namespace Artnix.Scheduler.Builders
             _atStartTime = true;
             return this;
         }
-
-        public IJobServiceBuilder AtTheEndOfDay()
-            => At(DateTime.Today.AddDays(1).AddMilliseconds(-1));
-
-        public IJobServiceBuilder AtTomorrowStartOfDay()
-            => At(DateTime.Today.AddDays(1));
     }
 }
