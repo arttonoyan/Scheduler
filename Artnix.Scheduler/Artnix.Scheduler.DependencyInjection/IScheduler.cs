@@ -8,9 +8,6 @@ namespace Artnix.Scheduler
 {
     public interface IScheduler
     {
-        void Stop(CancellationToken cancellationToken = default);
-        void Start(CancellationToken cancellationToken = default);
-
         Task StopAsync(CancellationToken cancellationToken = default);
         Task StartAsync(CancellationToken cancellationToken = default);
     }
@@ -24,17 +21,27 @@ namespace Artnix.Scheduler
             _serviceScopeFactory = serviceScopeFactory;
         }
 
-        public void Start(CancellationToken cancellationToken)
-            => StartOrStop(jobService => jobService.Start(cancellationToken));
-
-        public void Stop(CancellationToken cancellationToken)
-            => StartOrStop(jobService => jobService.Stop(cancellationToken));
-
-        private void StartOrStop(Action<IJobService> action)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             using var scope = _serviceScopeFactory.CreateScope();
             var provider = scope.ServiceProvider;
-            foreach (var job in JobManager.GetJobs())
+
+            StartOrStop(provider, jobService => jobService.Start(cancellationToken));
+            return StartOrStopAsync(provider, jobService => jobService.StartAsync(cancellationToken));
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            using var scope = _serviceScopeFactory.CreateScope();
+            var provider = scope.ServiceProvider;
+
+            StartOrStop(provider, jobService => jobService.Stop(cancellationToken));
+            return StartOrStopAsync(provider, jobService => jobService.StopAsync(cancellationToken));
+        }
+
+        private void StartOrStop(IServiceProvider provider, Action<IJobService> action)
+        {
+            foreach (var job in JobManager.GetSyncJobs())
             {
                 var jobServiceType = typeof(ScopedJobService<>).MakeGenericType(job);
                 var jobService = (IJobService)provider.GetRequiredService(jobServiceType);
@@ -42,23 +49,13 @@ namespace Artnix.Scheduler
             }
         }
 
-        public Task StartAsync(CancellationToken cancellationToken)
-            => StartOrStopAsync(jobService => jobService.StartAsync(cancellationToken));
-
-        public Task StopAsync(CancellationToken cancellationToken)
-            => StartOrStopAsync(jobService => jobService.StopAsync(cancellationToken));
-
-        private Task StartOrStopAsync(Func<IJobService, Task> func)
+        private Task StartOrStopAsync(IServiceProvider provider, Func<IAsyncJobService, Task> func)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
-            var provider = scope.ServiceProvider;
-
-            var jobs = JobManager.GetJobs();
-            var tasks = new List<Task>(jobs.Count);
-            foreach (var job in jobs)
+            var tasks = new List<Task>();
+            foreach (var job in JobManager.GetAsyncJobs())
             {
-                var jobServiceType = typeof(ScopedJobService<>).MakeGenericType(job);
-                var jobService = (IJobService)provider.GetRequiredService(jobServiceType);
+                var jobServiceType = typeof(ScopedAsyncJobService<>).MakeGenericType(job);
+                var jobService = (IAsyncJobService)provider.GetRequiredService(jobServiceType);
                 var task = func.Invoke(jobService);
                 tasks.Add(task);
             }

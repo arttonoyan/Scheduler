@@ -6,11 +6,11 @@ namespace Artnix.Scheduler
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddScheduler(this IServiceCollection services, Action<IJobMapperBuilder> confifurator)
+        public static IServiceCollection AddScheduler(this IServiceCollection services, Action<IScheduleBuilder> confifurator)
         {
             services.AddScoped<IScheduler, Scheduler>();
 
-            var builder = new JobMapperBuilder(services);
+            var builder = new ScheduleBuilder(services);
             confifurator.Invoke(builder);
             return services;
         }

@@ -11,7 +11,6 @@ namespace Artnix.Scheduler
             _job = createJob();
         }
 
-        protected override void Execute()
-            => _job.Execute();
+        protected override void Execute() => _job.Execute();
     }
 }

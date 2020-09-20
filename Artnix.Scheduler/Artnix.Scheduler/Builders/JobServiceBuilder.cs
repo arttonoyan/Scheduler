@@ -2,7 +2,7 @@
 
 namespace Artnix.Scheduler.Builders
 {
-    public class JobServiceBuilder : IJobServiceBuilder, IJobIntervalDateBuilder, IJobDueTimeBuilder, IJobStartBuilder, IBuilder<TimerOptions>
+    public class JobServiceBuilder : IJobServiceBuilder, IJobIntervalDateBuilder, IJobDueTimeBuilder, IJobStartBuilder
     {
         private float _interval;
         private TimeUnit _timeUnit;
@@ -14,20 +14,6 @@ namespace Artnix.Scheduler.Builders
             DueTime = CreateDueTime(),
             Period = CreatePeriodTime()
         };
-
-        public IJobService BuildJobService<TJob>()
-            where TJob : IJob, new()
-        {
-            return BuildJobService(() => new TJob());
-        }
-
-        public IJobService BuildJobService<TJob>(Func<TJob> createJob)
-            where TJob : IJob
-        {
-            int dueTime = CreateDueTime();
-            int period = CreatePeriodTime();
-            return new JobService<TJob>(dueTime, period, createJob);
-        }
 
         private int CreatePeriodTime()
         {
