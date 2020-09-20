@@ -12,7 +12,8 @@
     <PackageProjectUrl>https://github.com/arttonoyan/Scheduler/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/arttonoyan/Scheduler/</RepositoryUrl>
     <PackageTags>Schedule Job Task DependencyInjection</PackageTags>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
