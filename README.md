@@ -1,3 +1,8 @@
+# MQTTnet.EventBus
+[![GitHub](https://img.shields.io/github/license/arttonoyan/Scheduler.svg)](https://github.com/arttonoyan/Scheduler/blob/master/LICENSE)
+[![Nuget](https://img.shields.io/nuget/v/.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
+[![Nuget](https://img.shields.io/nuget/dt/Scheduler.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
+
 ## At the first you must create your job and implement the "Execute" function.
 
 ```
