@@ -1,7 +1,12 @@
-# MQTTnet.EventBus
+# Artnix.SchedulerFramework
 [![GitHub](https://img.shields.io/github/license/arttonoyan/Scheduler.svg)](https://github.com/arttonoyan/Scheduler/blob/master/LICENSE)
-[![Nuget](https://img.shields.io/nuget/v/.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
+[![Nuget](https://img.shields.io/nuget/v/Artnix.SchedulerFramework.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
 [![Nuget](https://img.shields.io/nuget/dt/Scheduler.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
+
+# Artnix.SchedulerFramework.DependencyInjection
+[![GitHub](https://img.shields.io/github/license/arttonoyan/Scheduler.svg)](https://github.com/arttonoyan/Scheduler/blob/master/LICENSE)
+[![Nuget](https://img.shields.io/nuget/v/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
+[![Nuget](https://img.shields.io/nuget/dt/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
 
 ## At the first you must create your job and implement the "Execute" function.
 
