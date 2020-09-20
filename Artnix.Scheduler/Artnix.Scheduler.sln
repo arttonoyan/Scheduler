@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artnix.Scheduler", "Artnix.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artnix.Scheduler.ConsoleTestApp", "Artnix.Scheduler.ConsoleTestApp\Artnix.Scheduler.ConsoleTestApp.csproj", "{F5DA8107-DFD8-4F44-95A3-F5AF2879C83E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artnix.Scheduler.DependencyInjection.ConsoleTestApp", "Artnix.Scheduler.DependencyInjection.ConsoleTestApp\Artnix.Scheduler.DependencyInjection.ConsoleTestApp.csproj", "{030B20F9-6F89-4A52-8B9C-438CB8DF6554}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artnix.Scheduler.DependencyInjection", "Artnix.Scheduler.DependencyInjection\Artnix.Scheduler.DependencyInjection.csproj", "{93A6E690-2697-4C23-B62B-96676EB58E2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F5DA8107-DFD8-4F44-95A3-F5AF2879C83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DA8107-DFD8-4F44-95A3-F5AF2879C83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DA8107-DFD8-4F44-95A3-F5AF2879C83E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030B20F9-6F89-4A52-8B9C-438CB8DF6554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030B20F9-6F89-4A52-8B9C-438CB8DF6554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030B20F9-6F89-4A52-8B9C-438CB8DF6554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030B20F9-6F89-4A52-8B9C-438CB8DF6554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A6E690-2697-4C23-B62B-96676EB58E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A6E690-2697-4C23-B62B-96676EB58E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A6E690-2697-4C23-B62B-96676EB58E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A6E690-2697-4C23-B62B-96676EB58E2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
