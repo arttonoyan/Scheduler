@@ -19,6 +19,19 @@ public class MyJob : IJob
     }
 }
 ```
+## DependencyInjection
+```
+services.AddScheduler(cfg =>
+{
+    cfg.CreaJobService<MyJobRed>(b => b.ToRunOnceIn(2).Seconds().AtStartTime());
+    cfg.CreaJobService<MyJobGreen>(b => b.ToRunOnceIn(3).Seconds().AtStartTime());
+});
+```
+```
+var provider = services.BuildServiceProvider();
+var scheduler = provider.GetService<IScheduler>();
+scheduler.Start();
+```
 
 ## Job service configuration.
 
