@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Builders\IJobMapperBuilder.cs" />
+    <Compile Remove="ServiceCollectionExtensions.cs" />
+  </ItemGroup>
 
 </Project>

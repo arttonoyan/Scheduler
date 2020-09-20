@@ -2,12 +2,18 @@
 
 namespace Artnix.Scheduler.Builders
 {
-    class JobServiceBuilder : IJobServiceBuilder, IJobIntervalDateBuilder, IJobDueTimeBuilder, IJobStartBuilder
+    public class JobServiceBuilder : IJobServiceBuilder, IJobIntervalDateBuilder, IJobDueTimeBuilder, IJobStartBuilder, IBuilder<TimerOptions>
     {
         private float _interval;
         private TimeUnit _timeUnit;
         private DateTime _atDateTime;
         private bool _atStartTime;
+
+        public TimerOptions Build() => new TimerOptions
+        {
+            DueTime = CreateDueTime(),
+            Period = CreatePeriodTime()
+        };
 
         public IJobService BuildJobService<TJob>()
             where TJob : IJob, new()
@@ -36,7 +42,7 @@ namespace Artnix.Scheduler.Builders
             TimeSpan time = _atDateTime - DateTime.Now;
             return (int)time.TotalMilliseconds;
         }
-        
+
         public IJobIntervalDateBuilder ToRunOnceIn(float interval)
         {
             _interval = interval;
