@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env: 
-  PROJECT_PATH: '**/*.sln'
+  PROJECT_PATH: 'Artnix.Scheduler/Artnix.Scheduler.sln'
   PROJECT_OUTPUT_DIR: ${{ github.workspace }}\artifacts
   NUGET_SOURCE_URI: 'https://api.nuget.org/v3/index.json'
 
