@@ -1,0 +1,39 @@
+name: Deploy to NuGet
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env: 
+  PROJECT_PATH: 'Artnix.Scheduler/Artnix.Scheduler.sln'
+  PROJECT_OUTPUT_DIR: ${{ github.workspace }}\artifacts
+  NUGET_SOURCE_URI: 'https://api.nuget.org/v3/index.json'
+  # PACK_CONFIG: --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PROJECT_OUTPUT_DIR }}  
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: windows-latest
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+    
+    - name: Pack
+      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PROJECT_OUTPUT_DIR }}
+
+    - name: Push
+      run: dotnet nuget push ${{ env.PROJECT_OUTPUT_DIR }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SOURCE_URI }}
