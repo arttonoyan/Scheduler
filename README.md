@@ -1,11 +1,11 @@
-# Artnix.SchedulerFramework
+![Deploy to NuGet](https://github.com/arttonoyan/Scheduler/workflows/CI/badge.svg)
 [![GitHub](https://img.shields.io/github/license/arttonoyan/Scheduler.svg)](https://github.com/arttonoyan/Scheduler/blob/master/LICENSE)
 [![Nuget](https://img.shields.io/nuget/v/Artnix.SchedulerFramework.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
+
+# Artnix.SchedulerFramework
 [![Nuget](https://img.shields.io/nuget/dt/Artnix.SchedulerFramework.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework/)
 
 # Artnix.SchedulerFramework.DependencyInjection
-[![GitHub](https://img.shields.io/github/license/arttonoyan/Scheduler.svg)](https://github.com/arttonoyan/Scheduler/blob/master/LICENSE)
-[![Nuget](https://img.shields.io/nuget/v/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
 [![Nuget](https://img.shields.io/nuget/dt/Artnix.SchedulerFramework.DependencyInjection.svg)](https://www.nuget.org/packages/Artnix.SchedulerFramework.DependencyInjection/)
 
 ## At the first you must create your Job and implement the `Execute` function.
