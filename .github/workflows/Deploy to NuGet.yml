@@ -2,9 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+      tags:
+      - 'v*'
 
 env: 
   PROJECT_PATH: 'Artnix.Scheduler/Artnix.Scheduler.sln'
@@ -31,11 +30,15 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
     
+    - name: 'Get Version'
+      id: version
+      uses: battila7/get-version-action@v2
+    
     - name: Pack Artnix.Scheduler
-      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PROJECT_OUTPUT_DIR }}
+      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}
     
     - name: Pack Artnix.SchedulerFramework.DependencyInjection
-      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.SchedulerFramework.DependencyInjection.csproj' --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PROJECT_OUTPUT_DIR }}
+      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.SchedulerFramework.DependencyInjection.csproj' --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}
 
     - name: Push
       run: dotnet nuget push ${{ env.PROJECT_OUTPUT_DIR }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SOURCE_URI }}
