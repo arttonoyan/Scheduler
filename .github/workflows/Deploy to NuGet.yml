@@ -33,11 +33,16 @@ jobs:
       id: version
       uses: battila7/get-version-action@v2.0.0
     
+    - name: Set Pack Configuration
+      run: echo '::set-output name=Release::--no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}'
+      id: pack_configuration
+    
     - name: Pack Artnix.Scheduler
-      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}
+      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' ${{ steps.pack_configuration.outputs.Release }}
     
     - name: Pack Artnix.SchedulerFramework.DependencyInjection
-      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler.DependencyInjection/Artnix.Scheduler.DependencyInjection.csproj' --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}
+      run: dotnet pack 'Artnix.Scheduler/Artnix.Scheduler.DependencyInjection/Artnix.Scheduler.DependencyInjection.csproj' ${{ steps.pack_configuration.outputs.Release }}
+    
 
     - name: Push
       run: dotnet nuget push ${{ env.PROJECT_OUTPUT_DIR }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SOURCE_URI }}
