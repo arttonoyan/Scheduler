@@ -1,8 +1,12 @@
 name: CI
 
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      packageVersion:
+        description: 'Nuget package version'     
+        required: false
+        default: '1.0.0'
 
 env: 
   PROJECT_PATH: 'Artnix.Scheduler/Artnix.Scheduler.sln'
@@ -28,13 +32,9 @@ jobs:
     
     - name: Build
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
-    
-    - name: 'Get Version'
-      id: version
-      uses: battila7/get-version-action@v2.0.0
-    
+
     - name: Set Pack Configuration
-      run: echo '::set-output name=Release::--no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PROJECT_OUTPUT_DIR }}'
+      run: echo '::set-output name=Release::--no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ github.event.inputs.packageVersion }} --output ${{ env.PROJECT_OUTPUT_DIR }}'
       id: pack_configuration
     
     - name: Pack Artnix.Scheduler
