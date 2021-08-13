@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Artnix.Scheduler\Artnix.Scheduler.csproj" />
+    <ProjectReference Include="..\..\src\Artnix.Scheduler\Artnix.Scheduler.csproj" />
   </ItemGroup>
 
 </Project>

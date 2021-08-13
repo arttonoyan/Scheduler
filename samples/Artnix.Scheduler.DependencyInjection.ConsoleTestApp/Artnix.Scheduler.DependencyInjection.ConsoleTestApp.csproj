@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Artnix.Scheduler.DependencyInjection\Artnix.Scheduler.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\Artnix.Scheduler.DependencyInjection\Artnix.Scheduler.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>
