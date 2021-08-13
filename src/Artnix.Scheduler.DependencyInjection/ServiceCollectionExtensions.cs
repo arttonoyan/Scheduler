@@ -1,8 +1,8 @@
-﻿using Artnix.Scheduler.Builders;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Artnix.Scheduler;
+using Artnix.Scheduler.Builders;
 using System;
 
-namespace Artnix.Scheduler
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
