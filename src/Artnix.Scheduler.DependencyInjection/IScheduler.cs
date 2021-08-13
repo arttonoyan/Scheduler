@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,24 +43,20 @@ namespace Artnix.Scheduler
         {
             foreach (var job in JobManager.GetSyncJobs())
             {
-                var jobServiceType = typeof(ScopedJobService<>).MakeGenericType(job);
-                var jobService = (IJobService)provider.GetRequiredService(jobServiceType);
+                var jobService = provider.GetJobService(job);
                 action.Invoke(jobService);
             }
         }
 
         private Task StartOrStopAsync(IServiceProvider provider, Func<IAsyncJobService, Task> func)
         {
-            var tasks = new List<Task>();
-            foreach (var job in JobManager.GetAsyncJobs())
+            var tasks = JobManager.GetAsyncJobs().Select(job => 
             {
-                var jobServiceType = typeof(ScopedAsyncJobService<>).MakeGenericType(job);
-                var jobService = (IAsyncJobService)provider.GetRequiredService(jobServiceType);
-                var task = func.Invoke(jobService);
-                tasks.Add(task);
-            }
+                var jobService = provider.GetAsyncJobService(job);
+                return func.Invoke(jobService);
+            });
 
-            return Task.FromResult(tasks);
+            return Task.WhenAll(tasks);
         }
     }
 }
