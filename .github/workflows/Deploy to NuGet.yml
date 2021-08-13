@@ -7,18 +7,9 @@ on:
         description: 'Nuget package version'     
         required: false
         default: '1.0.0'
-  # push:
-  #   branches: 
-  #   - main
-#   release:
-#     types:
-#       - created
-#     inputs:
-#       tag:
-#         description: 'tag of the release'  
 
 env:
-  PROJECT_PATH: 'Artnix.Scheduler/Artnix.Scheduler.sln'
+  PROJECT_PATH: 'Artnix.Scheduler.sln'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\output
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
 
@@ -26,6 +17,7 @@ jobs:
   deploy:
     name: 'Deploy'
     runs-on: 'windows-latest'
+        
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v2
@@ -40,23 +32,27 @@ jobs:
 
     - name: 'Build project'
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
-
-    - name: 'command param generation'
-      id: command-param-gen
-      run: echo "::set-output name=PARAMS::--no-restore --no-build --configuration Release -p:PackageVersion=${{ github.event.inputs.packageVersion }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}"
       
-    - name: 'Pack'
-      run: | 
-        dotnet pack 'Artnix.Scheduler/Artnix.Scheduler/Artnix.Scheduler.csproj' ${{ steps.command-param-gen.outputs.PARAMS }} 
-        dotnet pack 'Artnix.Scheduler/Artnix.Scheduler.DependencyInjection/Artnix.Scheduler.DependencyInjection.csproj' ${{ steps.command-param-gen.outputs.PARAMS }}
+    - name: 'Pack command'
+      id: pack-command
+      run: echo "::set-output name=PARAMS::--no-restore --no-build --configuration Release -p:PackageVersion=${{ github.event.inputs.packageVersion }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}"
 
-    - name: Archive NuGet packages to Artifacts
+    - name: 'Pack project Artnix.Scheduler'
+      run: |
+        dotnet pack 'src/Artnix.Scheduler/Artnix.Scheduler.csproj' ${{ steps.pack-command.outputs.PARAMS }}
+        dotnet pack 'src/Artnix.Scheduler.DependencyInjection/Artnix.Scheduler.DependencyInjection.csproj' ${{ steps.pack-command.outputs.PARAMS }}
+      
+    - name: Archive NuGet Package Artnix.Scheduler
       uses: actions/upload-artifact@v1
       with:
         name: Pack GitActionsTestApp
         path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/
 
-    - name: 'Push'
-      run: | 
-        dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/Artnix.Scheduler.${{ github.event.inputs.packageVersion }}.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source ${{ env.NUGET_SOURCE_URL }}
-        dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/Artnix.Scheduler.DependencyInjection.${{ github.event.inputs.packageVersion }}.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source ${{ env.NUGET_SOURCE_URL }}
+    - name: 'Push command'
+      id: push-command
+      run: echo "::set-output name=PARAMS::--api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source ${{ env.NUGET_SOURCE_URL }}"
+      
+    - name: Push to NuGet
+      run: |
+        dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/Artnix.SchedulerFramework.${{ github.event.inputs.packageVersion }}.nupkg ${{ steps.push-command.outputs.PARAMS }}
+        dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/Artnix.SchedulerFramework.DependencyInjection.${{ github.event.inputs.packageVersion }}.nupkg ${{ steps.push-command.outputs.PARAMS }}
